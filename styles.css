@@ -3,12 +3,19 @@
     --secondary-color:  #56876d;
     --black:            #000000;
     --white:            #FFFFFF;
+    --gray-dark:        #696969;
+    --gray-light:       #C4C4C4;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html, body {
+    position: relative;
+    overflow-x: hidden;
 }
 
 /* Navbar */
@@ -60,7 +67,6 @@ nav a {
 
 section {
     height: 100vh;
-    min-height: 100vh;
     border: 1px solid var(--black);
     padding-top: 5vh;
     padding-bottom: -5vh;
@@ -71,6 +77,72 @@ section {
         padding-top: 10vh;
         height: fit-content;
     }
+}
+
+/* experience */
+.experience-ship {
+    display: flex;
+    flex-direction: row;
+    margin: 20vh 10vw;
+    height: 60vh;
+}
+
+.experience-container {
+    flex-grow: 2;
+    background-color: var(--gray-light);
+    border: 2px solid var(--secondary-color);
+    border-radius: 17px;
+    padding: 25px;
+    margin: 1rem;
+    
+}
+
+.experience-item {
+    background-color: var(--gray-light);
+    border: 2px solid var(--secondary-color);
+    border-radius: 17px;
+    padding: 25px;
+    margin: 1rem;
+    width: 25vw;
+    cursor: pointer;
+}
+
+.experience-container h4 {
+    font-weight: normal;
+    color: var(--gray-dark);
+}
+
+.experience-container h4:first-of-type {
+    margin-top: 15px;
+}
+    
+h5 {
+    font-weight: normal;
+    color: var(--gray-dark);
+}
+
+img {
+    float: right;
+}
+
+.experience-content {
+    padding: 1rem 0;
+}
+
+.experience-content h3 {
+    margin: 1rem 0 0.5rem 0;
+    cursor: pointer;
+}
+
+.experience-content h3:hover {
+    color: var(--primary-color);
+}
+
+.experience-content ul {
+    padding-left: 1rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
 }
 
 /* Language */

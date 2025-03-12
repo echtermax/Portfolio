@@ -24,3 +24,26 @@ document.addEventListener("DOMContentLoaded", function () {
     
     sections.forEach(section => observer.observe(section));
 });
+
+// experience
+
+document.addEventListener("DOMContentLoaded", function () {
+    const headlines = document.querySelectorAll(".experience-content h3");
+    
+    headlines.forEach(headline => {
+        headline.addEventListener("click", function () {
+            const currentList = this.nextElementSibling;
+            document.querySelectorAll(".experience-content ul").forEach(ul => {
+                if (ul !== currentList) {
+                    ul.style.maxHeight = "0";
+                }
+            });
+            
+            if (currentList.style.maxHeight === "0px" || currentList.style.maxHeight === "") {
+                currentList.style.maxHeight = currentList.scrollHeight + "px";
+            } else {
+                currentList.style.maxHeight = "0";
+            }
+        });
+    });
+});
