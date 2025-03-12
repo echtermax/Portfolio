@@ -47,3 +47,14 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+// contact form
+
+function handleMailto() {
+    const name = document.getElementById('name').value;
+    const message = document.getElementById('message').value;
+
+    window.location.href = `info@maxpawellek.de
+    ?subject=Kontaktformular von ${encodeURIComponent(name)}
+    &body=Name: ${encodeURIComponent(name)}%0A%0ANachricht:%0A${encodeURIComponent(message)}`;
+}

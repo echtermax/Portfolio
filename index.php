@@ -25,9 +25,9 @@
 <body>
     <nav>
         <a class="nav-item" href="#experience">Erfahrung</a>
-        <a class="nav-item" href="#certificates">Zertifikate</a>
         <a class="nav-item" href="#projects">Projekte</a>
         <a class="nav-item" href="#languages">Skills</a>
+        <a class="nav-item" href="#contact">Kontakt</a>
     </nav>
     
     <section id="experience">
@@ -77,7 +77,6 @@
             </div>
         </div>
     </section>
-    <section id="certificates"></section>
     <section id="projects"></section>
     <section id="languages">
         <div class="lang_container">
@@ -101,6 +100,73 @@
                 </div>
             </div>
         </div>
+    </section>
+    <section id="contact">
+        <form action="index.php#contact" method="post">
+            <h1>Kontakt</h1>
+            <h4>Hast du eine coole Idee, ein spannendes Projekt oder einfach Lust auf einen Austausch? Schreib mir!</h4>
+
+            <label for="name">Name<span class="required-star" title="required">*</span>:</label>
+            <input type="text" id="name" name="name" placeholder="Max Mustermann" <?= ($_SERVER["REQUEST_METHOD"] == "POST") ? "value='" . $_POST['name'] . "'" : "" ?> />
+            <?php
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    $form_error = false;
+                    if (empty($_POST["name"])) {
+                        echo("<span class='form-error'>Der Name darf nicht leer sein.</span>");
+                        $form_error = true;
+                    } elseif (!preg_match("/^[a-zA-ZäöüÄÖÜß\s-]+$/", $_POST["name"])) {
+                        echo("<span class='form-error'>Der Name darf nur Buchstaben und Leerzeichen enthalten.</span>");
+                        $form_error = true;
+                    }
+                }
+            ?>
+
+            <label for="email">E-Mail-Adresse<span class="required-star" title="required">*</span>:</label>
+            <input type="email" id="email" name="email" placeholder="max@mustermann.de" <?= ($_SERVER["REQUEST_METHOD"] == "POST") ? "value='" . $_POST['email'] . "'" : "" ?> />
+            <?php
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    if (empty($_POST["email"])) {
+                        echo("<span class='form-error'>Die E-Mail-Adresse darf nicht leer sein.</span>");
+                        $form_error = true;
+                    } elseif (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+                        echo("<span class='form-error'>Bitte eine gültige E-Mail-Adresse eingeben.</span>");
+                        $form_error = true;
+                    }
+                }
+            ?>
+
+            <label for="message">Nachricht<span class="required-star" title="required">*</span>:</label>
+            <textarea id="message" name="message" placeholder=""><?= ($_SERVER["REQUEST_METHOD"] == "POST") ? $_POST['message'] : "" ?></textarea>
+            <?php
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    if (empty($_POST["message"])) {
+                        echo("<span class='form-error'>Die Nachricht darf nicht leer sein.</span>");
+                        $form_error = true;
+                    } elseif (strlen($_POST["message"]) < 10) {
+                        echo("<span class='form-error'>Die Nachricht muss mindestens 10 Zeichen lang sein.</span>");
+                        $form_error = true;
+                    }
+                }
+            ?>
+
+            <?php
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                if (!$form_error) {
+                    echo "<p style='color: var(--secondary-color);'>Formular erfolgreich gesendet!</p>";
+
+                    $to = "info@maxpawellek.de";
+                    $subject = "Neue Nachricht von " . htmlspecialchars($_POST["name"]);
+                    $message = htmlspecialchars($_POST["message"]);
+                    $headers = "From: " . htmlspecialchars($_POST["email"]);
+
+                    mail($to, $subject, $message, $headers);
+                }
+            }
+            ?>
+
+            <button type="submit">Absenden</button>
+            <h4>Alternativ schreibe mir gerne direkt eine <a href="mailto:info@maxpawellek.de">Mail</a></h4>
+        </form>
     </section>
 </body>
 </html>
