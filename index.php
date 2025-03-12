@@ -102,7 +102,7 @@
         </div>
     </section>
     <section id="contact">
-        <form action="index.php#contact" method="post">
+        <form action="index.php" method="post">
             <h1>Kontakt</h1>
             <h4>Hast du eine coole Idee, ein spannendes Projekt oder einfach Lust auf einen Austausch? Schreib mir!</h4>
 
@@ -161,6 +161,7 @@
 
                     mail($to, $subject, $message, $headers);
                 }
+                header("Location: index.php#contact");
             }
             ?>
 
