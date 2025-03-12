@@ -1,3 +1,10 @@
+@font-face {
+    font-family: "Barlow";
+    src: url("/assets/fonts/Barlow-Regular.ttf") format("tff");
+    font-weight: 400;
+    font-style: normal;
+}
+
 :root {
     --primary-color:    #3EAFFF;
     --secondary-color:  #56876d;
@@ -11,6 +18,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Barlow", Arial, sans-serif;
 }
 
 html, body {
