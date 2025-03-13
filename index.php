@@ -77,7 +77,13 @@
             </div>
         </div>
     </section>
-    <section id="projects"></section>
+    <section id="projects">
+        <div class="projects-container">
+            <?php
+                include "includes/projects.php";
+            ?>
+        </div>
+    </section>
     <section id="languages">
         <div class="lang_container">
             <div class="lang_box">

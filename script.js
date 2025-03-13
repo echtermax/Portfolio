@@ -48,13 +48,16 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// contact form
+// projects
 
-function handleMailto() {
-    const name = document.getElementById('name').value;
-    const message = document.getElementById('message').value;
-
-    window.location.href = `info@maxpawellek.de
-    ?subject=Kontaktformular von ${encodeURIComponent(name)}
-    &body=Name: ${encodeURIComponent(name)}%0A%0ANachricht:%0A${encodeURIComponent(message)}`;
+function openLanguageModal(repoId) {
+    document.getElementById('language-modal-' + repoId).style.display = 'block';
+}
+function closeLanguageModal(repoId) {
+    document.getElementById('language-modal-' + repoId).style.display = 'none';
+}
+window.onclick = function(event) {
+    if (event.target.classList.contains('modal')) {
+        event.target.style.display = 'none';
+    }
 }
