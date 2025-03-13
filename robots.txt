@@ -1,0 +1,7 @@
+User-agent: *
+
+Disallow: /asssets/
+Disallow: /cache/
+Disallow: /includes/
+
+Sitemap: https://www.maxpawellek.de/sitemap.xml

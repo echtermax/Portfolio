@@ -2,8 +2,26 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Portfolio von Max Pawellek</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Max Pawellek - Webentwickler & Softwareentwickler</title>
+    <meta name="description" content="Willkommen auf meinem Portfolio! Ich bin Max Pawellek, ein leidenschaftlicher Webentwickler mit Fokus auf moderne Web-Technologien. Schau dir meine Projekte an!">
+    <meta name="keywords" content="Webentwickler, Softwareentwickler, Portfolio, HTML, CSS, JavaScript, PHP, Vue.js, Node.js, Freelancer">
+    <meta name="author" content="Max Pawellek">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Max Pawellek - Web- & Softwareentwickler">
+    <meta property="og:description" content="Mein Portfolio mit Projekten aus Webentwicklung & Softwareentwicklung. Lass uns neues erschaffen!!">
+    <meta property="og:url" content="https://www.maxpawellek.de">
+    <meta property="og:type" content="website">
+    <!--
+        ToDo: Add preview image and icons
+        <meta property="og:image" content="https://www.maxpawellek.de/assets/meta/preview.jpg">
+        <link rel="icon" href="https://www.maxpawellek.de/assets/meta/favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon" href="https://www.maxpawellek.de/assets/meta/apple-touch-icon.png">
+    -->
+
+    <link rel="canonical" href="https://www.maxpawellek.de">
+
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
     <!-- Matomo -->
@@ -40,7 +58,6 @@
                 </div>
             </div> -->
             <div class="experience-container">
-                <img src="https://www.kiwi.de/files/kiwi/layout/images/logo.png" alt="">
                 <h2>KIWI. Werbeagentur GmbH</h2>
                 <h4>Aug 2024 - <!-- Jul 2027 --> Jetzt</h4>
                 <h4>Auszubildender zum Fachinformatiker für Anwendungsentwicklung</h4>
