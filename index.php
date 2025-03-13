@@ -42,10 +42,10 @@
 </head>
 <body>
     <nav>
-        <a class="nav-item" href="#experience">Erfahrung</a>
-        <a class="nav-item" href="#projects">Projekte</a>
-        <a class="nav-item" href="#languages">Skills</a>
-        <a class="nav-item" href="#contact">Kontakt</a>
+        <a class="nav-item" href="/experience">Erfahrung</a>
+        <a class="nav-item" href="/projects">Projekte</a>
+        <a class="nav-item" href="/skills">Skills</a>
+        <a class="nav-item" href="/contact">Kontakt</a>
     </nav>
     
     <section id="experience">
@@ -101,7 +101,7 @@
             ?>
         </div>
     </section>
-    <section id="languages">
+    <section id="skills">
         <div class="lang_container">
             <div class="lang_box">
                 <h2>Frontend</h2>

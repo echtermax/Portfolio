@@ -1,3 +1,30 @@
+document.querySelectorAll('nav a.nav-item').forEach(link => {
+    link.addEventListener('click', event => {
+        event.preventDefault();
+        const targetURL = link.getAttribute('href');
+        
+        history.pushState(null, '', targetURL);
+        
+        const sectionId = targetURL.substring(1);
+        const targetElement = document.getElementById(sectionId);
+        if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    let urlParams = new URLSearchParams(window.location.search);
+    let section = urlParams.get('section');
+    if (section) {
+        const targetElement = document.getElementById(section);
+        if (targetElement) {
+            history.replaceState(null, '', '/' + section);
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+});
+
 // Navbar
 document.addEventListener("DOMContentLoaded", function () {
     const sections = document.querySelectorAll("section");
