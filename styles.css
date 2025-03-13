@@ -403,7 +403,7 @@ input:focus, textarea:focus {
 
 textarea {
     resize: none;
-    height: 40vh;
+    height: 25vh;
 }
 
 button[type="submit"] {
