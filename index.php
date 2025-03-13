@@ -62,29 +62,29 @@
                 <h4>Aug 2024 - <!-- Jul 2027 --> Jetzt</h4>
                 <h4>Auszubildender zum Fachinformatiker für Anwendungsentwicklung</h4>
                 <div class="experience-content">
-                    <h3>Frontend-Entwicklung</h3>
+                    <h3><span class="list-icon">&#9654;</span> Frontend-Entwicklung</h3>
                     <ul>
                         <li>Umsetzung von Weblayouts mit HTML, CSS (Sass/SCSS) und JavaScript</li>
                         <li>Einbau interaktiver Komponenten und Responsiveness</li>
                         <li>Verwendung moderner Frontend-Frameworks (Vue, Contao) und Libraries (jQuery)</li>
                     </ul>
-                    <h3>Backend-Entwicklung</h3>
+                    <h3><span class="list-icon">&#9654;</span> Backend-Entwicklung</h3>
                     <ul>
                         <li>Konzeption und Implementierung von Serverfunktionen</li>
                         <li>Arbeiten mit Datenbanken (MySQL)</li>
                         <li>Einsatz von Frameworks wie Express (Node.js)</li>
                     </ul>
-                    <h3>API-Erstellung</h3>
+                    <h3><span class="list-icon">&#9654;</span> API-Erstellung</h3>
                     <ul>
                         <li>Entwicklung von REST-APIs mit Node.js und Express</li>
                         <li>Dokumentierung einer API-Schnittstelle mit Swagger (OpenAPI)</li>
                     </ul>
-                    <h3>CMS</h3>
+                    <h3><span class="list-icon">&#9654;</span> CMS</h3>
                     <ul>
                         <li>Anpassung von Templates und Modulen in Contao</li>
                         <li>Einspielen von Contao Updates über Trakked und den Contao Manager</li>
                     </ul>
-                    <h3>Git(Hub)</h3>
+                    <h3><span class="list-icon">&#9654;</span> Git(Hub)</h3>
                     <ul>
                         <li>Nutzung von Git und GitHub für die Zusammenarbeit im Team</li>
                         <li>Erstellen und Verwalten von GitHub-Tags und Releases</li>
@@ -95,6 +95,10 @@
         </div>
     </section>
     <section id="projects">
+        <div class="section-title">
+            <h1>Projekte</h1>
+            <h4>Hier findest du meine persönlichen Projekte, an denen ich in meiner Freizeit arbeite.</h4>
+        </div>
         <div class="projects-container">
             <?php
                 include "includes/projects.php";
@@ -102,6 +106,10 @@
         </div>
     </section>
     <section id="skills">
+        <div class="section-title">
+            <h1>Skills</h1>
+            <h4>Hier findest du die Technologien & Tools, mit denen ich arbeite</h4>
+        </div>
         <div class="lang_container">
             <div class="lang_box">
                 <h2>Frontend</h2>

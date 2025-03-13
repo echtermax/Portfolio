@@ -92,7 +92,7 @@ section {
 .experience-ship {
     display: flex;
     flex-direction: row;
-    margin: 20vh 10vw;
+    margin: 10vh 10vw;
     min-height: 60vh;
     height: fit-content;
 }
@@ -151,14 +151,29 @@ h5, h4 {
     transition: max-height 0.3s ease-in-out;
 }
 
+.list-icon {
+    transition: transform 0.3s ease;
+    display: inline-block;
+    color: var(--black);
+}
+
 /* Projects */
+
+.section-title {
+    text-align: center;
+    margin-top: 7vh;
+}
+
+.section-title h4 {
+    margin-top: 1rem;
+}
 
 .projects-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 2rem;
-    margin: 20vh 10vw;
+    margin: 7vh 10vw;
 }
 
 .project-card {

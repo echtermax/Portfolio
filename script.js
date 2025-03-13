@@ -60,16 +60,30 @@ document.addEventListener("DOMContentLoaded", function () {
     headlines.forEach(headline => {
         headline.addEventListener("click", function () {
             const currentList = this.nextElementSibling;
-            document.querySelectorAll(".experience-content ul").forEach(ul => {
-                if (ul !== currentList) {
-                    ul.style.maxHeight = "0";
+            const currentIcon = this.querySelector(".list-icon");
+            
+            document.querySelectorAll(".experience-content h3").forEach(otherHeadline => {
+                const otherList = otherHeadline.nextElementSibling;
+                const otherIcon = otherHeadline.querySelector(".list-icon");
+                
+                if (otherList !== currentList) {
+                    otherList.style.maxHeight = "0";
+                    if (otherIcon) {
+                        otherIcon.style.transform = "rotate(0deg)";
+                    }
                 }
             });
             
             if (currentList.style.maxHeight === "0px" || currentList.style.maxHeight === "") {
                 currentList.style.maxHeight = currentList.scrollHeight + "px";
+                if (currentIcon) {
+                    currentIcon.style.transform = "rotate(90deg)";
+                }
             } else {
                 currentList.style.maxHeight = "0";
+                if (currentIcon) {
+                    currentIcon.style.transform = "rotate(0deg)";
+                }
             }
         });
     });
