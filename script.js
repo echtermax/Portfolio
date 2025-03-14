@@ -94,6 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function openLanguageModal(repoId) {
     document.getElementById('language-modal-' + repoId).style.display = 'block';
 }
+
 function closeLanguageModal(repoId) {
     document.getElementById('language-modal-' + repoId).style.display = 'none';
 }
@@ -102,3 +103,10 @@ window.onclick = function(event) {
         event.target.style.display = 'none';
     }
 }
+
+window.addEventListener('load', () => {
+    const box = document.querySelector(".project-card h4");
+    if (box.scrollHeight > box.clientHeight) {
+        box.classList.add('text-flex-start');
+    }
+});

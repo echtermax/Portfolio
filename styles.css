@@ -180,18 +180,40 @@ h5, h4 {
     background-color: var(--gray-light);
     border: 2px solid var(--secondary-color);
     border-radius: 17px;
-    width: 25vw;
+    width: 30vw;
+    height: 35vh;
     text-decoration: none;
     color: var(--black);
-    min-width: fit-content;
 }
 
 .project-info {
     margin: 25px 25px 0 25px;
 }
 
+.project-info span {
+    float: right;
+}
+
 .project-card h3 {
     margin: 1rem 0 0.5rem 0;
+}
+
+.project-card h4 {
+    height: 3.66rem;
+    max-height: 3.66rem;
+    overflow: hidden;
+    align-items: center;
+    display: flex;
+}
+
+.project-card h4.text-flex-start {
+    align-items: flex-start;
+}
+
+.project-info h4 span {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
 }
 
 .project-card p {

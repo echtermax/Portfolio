@@ -1,4 +1,6 @@
 <?php
+    include_once "env.php";
+
     /**
      * @param string $repoName
      * @return mixed
@@ -20,7 +22,7 @@
      * @return int|mixed
      */
     function fetchRepoCommits(string $repoName): mixed {
-        global $githubUsername, $cacheDir, $cacheTime;
+        global $githubUsername, $cacheDir, $cacheTime, $GITHUB_ACCESS_TOKEN;
         $commitCacheFile = "$cacheDir/commits_$repoName.json";
 
         if (file_exists($commitCacheFile) && (time() - filemtime($commitCacheFile) < $cacheTime)) {
@@ -32,6 +34,12 @@
         curl_setopt($ch, CURLOPT_URL, $commitUrl);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0");
+        // Add authorization header if token is provided
+        if (!empty($GITHUB_ACCESS_TOKEN)) {
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                "Authorization: token $GITHUB_ACCESS_TOKEN"
+            ]);
+        }
         $commitResponse = curl_exec($ch);
         curl_close($ch);
 
@@ -51,6 +59,28 @@
     }
 
     /**
+     * Fetches the latest release info for a repository.
+     *
+     * @param string $repoName
+     * @return mixed
+     */
+    function fetchRepoLatestRelease(string $repoName): mixed {
+        global $githubUsername, $cacheDir, $cacheTime;
+        $releaseCacheFile = "$cacheDir/release_$repoName.json";
+
+        if (file_exists($releaseCacheFile) && (time() - filemtime($releaseCacheFile) < $cacheTime)) {
+            $result = json_decode(file_get_contents($releaseCacheFile), true);
+        } else {
+            $releaseUrl = "https://api.github.com/repos/$githubUsername/$repoName/releases";
+            $result = getFromApi($releaseUrl, $releaseCacheFile) ?? null;
+        }
+
+        if ($result != null) $result = end($result);
+
+        return $result;
+    }
+
+    /**
      * @param string $apiUrl
      * @param string $cacheFile
      * @return mixed
@@ -60,6 +90,12 @@
         curl_setopt($ch, CURLOPT_URL, $apiUrl);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0");
+
+        if (!empty($GITHUB_ACCESS_TOKEN)) {
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                "Authorization: token $GITHUB_ACCESS_TOKEN"
+            ]);
+        }
         $response = curl_exec($ch);
         curl_close($ch);
 
@@ -115,14 +151,16 @@
         $languages = fetchRepoLanguages($repo['name']);
         $totalBytes = array_sum($languages);
         $totalCommits = fetchRepoCommits($repo['name']);
+        $latestRelease = fetchRepoLatestRelease($repo['name']);
         $repoId = htmlspecialchars($repo['name']);
         ?>
         <div class="project-card">
             <div class="project-info">
                 <h3><?= htmlspecialchars($repo['name']) ?></h3>
-                <h4><?= htmlspecialchars($repo['description'] ?: "Keine Beschreibung verfügbar.") ?></h4>
-                <p>Letztes Update: <?= date("d.m.Y", strtotime($repo['updated_at'])) ?></p>
-                <p><?= $totalCommits ?> Commits</p>
+                <h4><span><?= htmlspecialchars($repo['description'] ?: "Keine Beschreibung verfügbar.") ?></span></h4>
+                <p>Letztes Update: <span class="value"><?= date("d.m.Y", strtotime($repo['updated_at'])) ?></span></p>
+                <p>Anzahl Commits: <span class="value"><?= $totalCommits ?></span></p>
+                <p>Letzter Release: <span class="value"><?= $latestRelease['name'] ?? "Kein Release verfügbar" ?></span></p>
 
                 <div class="language-bar" onclick="openLanguageModal('<?= $repoId ?>')">
                     <?php foreach ($languages as $lang => $bytes):
