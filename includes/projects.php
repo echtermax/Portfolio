@@ -14,14 +14,14 @@
         }
 
         $langUrl = "https://api.github.com/repos/$githubUsername/$repoName/languages";
-        return getFromApi($langUrl, $langCacheFile);
+        return getFromGitHubApi($langUrl, $langCacheFile);
     }
 
     /**
      * @param string $repoName
      * @return int|mixed
      */
-    function fetchRepoCommits(string $repoName): mixed {
+    function fetchRepoCommitsTotal(string $repoName): mixed {
         global $githubUsername, $cacheDir, $cacheTime, $GITHUB_ACCESS_TOKEN;
         $commitCacheFile = "$cacheDir/commits_$repoName.json";
 
@@ -30,20 +30,7 @@
         }
 
         $commitUrl = "https://api.github.com/repos/$githubUsername/$repoName/stats/contributors";
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $commitUrl);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0");
-        // Add authorization header if token is provided
-        if (!empty($GITHUB_ACCESS_TOKEN)) {
-            curl_setopt($ch, CURLOPT_HTTPHEADER, [
-                "Authorization: token $GITHUB_ACCESS_TOKEN"
-            ]);
-        }
-        $commitResponse = curl_exec($ch);
-        curl_close($ch);
-
-        $commitData = json_decode($commitResponse, true);
+        $commitData = getFromGitHubApi($commitUrl, $commitCacheFile);
 
         if (is_array($commitData)) {
             foreach ($commitData as $contributor) {
@@ -72,7 +59,7 @@
             $result = json_decode(file_get_contents($releaseCacheFile), true);
         } else {
             $releaseUrl = "https://api.github.com/repos/$githubUsername/$repoName/releases";
-            $result = getFromApi($releaseUrl, $releaseCacheFile) ?? null;
+            $result = getFromGitHubApi($releaseUrl, $releaseCacheFile) ?? null;
         }
 
         if ($result != null) $result = end($result);
@@ -85,7 +72,7 @@
      * @param string $cacheFile
      * @return mixed
      */
-    function getFromApi(string $apiUrl, string $cacheFile): mixed {
+    function getFromGitHubApi(string $apiUrl, string $cacheFile): mixed {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $apiUrl);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -141,7 +128,7 @@
         } elseif (!file_exists($cacheFile)) {
             file_put_contents($cacheFile, json_encode([]));
         }
-        $repos = getFromApi($apiUrl, $cacheFile);
+        $repos = getFromGitHubApi($apiUrl, $cacheFile);
     }
 ?>
 
@@ -150,7 +137,7 @@
         <?php
         $languages = fetchRepoLanguages($repo['name']);
         $totalBytes = array_sum($languages);
-        $totalCommits = fetchRepoCommits($repo['name']);
+        $totalCommits = fetchRepoCommitsTotal($repo['name']);
         $latestRelease = fetchRepoLatestRelease($repo['name']);
         $repoId = htmlspecialchars($repo['name']);
         ?>
