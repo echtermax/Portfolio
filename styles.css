@@ -157,6 +157,24 @@ h5, h4 {
     color: var(--black);
 }
 
+@media (max-width: 768px) {
+    .experience-ship {
+        margin: 0;
+        width: 100vw;
+        flex-direction: column;
+    }
+    
+    .experience-item {
+        width: calc(100vw / 3);
+        margin: 0;
+    }
+    
+    .experience-container {
+        width: 100vw;
+        margin: 0;
+    }
+}
+
 /* Projects */
 
 .section-title {
@@ -181,7 +199,8 @@ h5, h4 {
     border: 2px solid var(--secondary-color);
     border-radius: 17px;
     width: 30vw;
-    height: 35vh;
+    height: fit-content;
+    min-height: 35vh;
     text-decoration: none;
     color: var(--black);
 }
@@ -319,6 +338,12 @@ h5, h4 {
         width: 80vw;
         height: 80vh;
         margin: 5% auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-card {
+        width: 80vw;
     }
 }
 
